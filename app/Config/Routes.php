@@ -29,14 +29,18 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
-$routes->post('/inicio', 'Home::index');
-$routes->get('/cerrar', 'Home::cerrarSesion');
-$routes->get('/empleados', 'Home::empleados');
-$routes->post('/empleados', 'Home::empleados');
-$routes->post('/nuevoEmpleado', 'Home::insertE');
-$routes->post('/eliminarEmpleado', 'Home::deleteE');
-$routes->post('/editarEmpleado', 'Home::editE');
+$routes->get('/', 'EmpleadosController::index');
+$routes->post('/inicio', 'EmpleadosController::index');
+$routes->get('/cerrar', 'EmpleadosController::cerrarSesion');
+$routes->get('/empleados', 'EmpleadosController::empleados');
+$routes->post('/empleados', 'EmpleadosController::empleados');
+$routes->post('/nuevoEmpleado', 'EmpleadosController::insertE');
+$routes->post('/eliminarEmpleado', 'EmpleadosController::deleteE');
+$routes->post('/editarEmpleado', 'EmpleadosController::editE');
+$routes->get('/trabajos', 'TrabajosController::trabajos');
+$routes->post('/nuevoTrabajo', 'TrabajosController::agregarTrabajos');
+$routes->post('/editarTrabajo', 'TrabajosController::editarTrabajos');
+$routes->post('/eliminarTrabajo', 'TrabajosController::eliminarTrabajos');
 //$routes->get('/eliminarEmpleado/(:num)', 'Home::deleteE/$1');
 
 

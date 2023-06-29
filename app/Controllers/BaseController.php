@@ -48,6 +48,22 @@ abstract class BaseController extends Controller
      */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
+        $currentUriA = current_url(true);
+        $currentUriString = $currentUriA->getScheme().'://'. $_SERVER['HTTP_HOST']. $_SERVER['REQUEST_URI'];
+        //echo $currentUriString;
+        
+        //$uri = service('uri', $currentUriA);
+        $uri = new \CodeIgniter\HTTP\URI($currentUriString);
+        for ($i=0; $i <= $uri->getTotalSegments() ; $i++) { 
+            if($uri->getSegment($i) == "index.php"){
+                $uriFinal = str_replace("index.php/","",$uri);
+                $uriFinal = str_replace("index.php","",$uriFinal);
+                
+                header("Location: $uriFinal");
+                exit();
+            }
+        }
+        //echo $uriFinal;
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
 

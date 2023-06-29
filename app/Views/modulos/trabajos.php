@@ -17,7 +17,7 @@
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
                   <i class="bx bx-user bx-md"></i>
-                  <label class="mt-3"><h2>EMPLEADOS</h2></label>
+                  <label class="mt-3"><h2>TRABAJOS</h2></label>
                 </div>
               </div>
               <!-- /Search -->
@@ -28,17 +28,17 @@
           <div class="content-wrapper">
             <!-- Content -->
             <div class="container-fluid flex-grow-1 container-p-y">
-              <div class="alert alert-danger" role="alert" id="empEliminado">Empleado Eliminado con Éxito</div>
+              <div class="alert alert-danger" role="alert" id="empEliminado">Trabajo Eliminado con Éxito</div>
               <!-- Layout Demo -->
               <div class="layout-demo-wrapper">
                 <!-- Form controls -->
                 <div class="col-xxl">
                   <div class="card mb-5">
                     <div class="card-body">
-                      <form action="<?php echo base_url('nuevoEmpleado'); ?>" method="POST">
+                      <form action="<?php echo base_url('nuevoTrabajo'); ?>" method="POST">
                         <div class="row mb-3">
-                          <h4>Nuevo Empleado</h4>
-                          <label class="col-sm-2 col-form-label" for="nombreEmp">Nombre</label>
+                          <h4>Nuevo Trabajo</h4>
+                          <label class="col-sm-2 col-form-label" for="propietarioTrb">Propietario</label>
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                               <span id="basic-icon-default-fullname2" class="input-group-text"
@@ -47,64 +47,64 @@
                               <input
                                 type="text"
                                 class="form-control"
-                                id="nombreEmp"
-                                name="nombreEmp"
-                                placeholder="John"
-                                aria-label="John"
+                                id="propietarioTrb"
+                                name="propietarioTrb"
+                                placeholder="Jose Enriquez"
+                                aria-label="Jose Enriquez"
                                 aria-describedby="basic-icon-default-fullname2"
                               />
                             </div>
                           </div>
-                            <label class="col-sm-2 col-form-label mt-2" for="apellidoEmp">Apellido</label>
+                            <label class="col-sm-2 col-form-label mt-2" for="detalleTrb">Detalle</label>
                             <div class="col-sm-10 mt-2">
                               <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-fullname2" class="input-group-text"
-                                ><i class="bx bx-user"></i
+                                ><i class="bx bx-detail"></i
                                 ></span>
                                 <input
                                 type="text"
                                 class="form-control"
-                                id="apellidoEmp"
-                                name="apellidoEmp"
-                                placeholder="Doe"
-                                aria-label="Doe"
+                                id="detalleTrb"
+                                name="detalleTrb"
+                                placeholder="Levantamiento"
+                                aria-label="Levantamiento"
                                 aria-describedby="basic-icon-default-fullname2"
                                 />
                               </div>
                             </div>
                         </div>
                         <div class="row mb-3">
-                          <label class="col-sm-2 col-form-label" for="direccionEmp">Dirección</label>
+                          <label class="col-sm-2 col-form-label" for="direccionTrb">Dirección</label>
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                               <span id="basic-icon-default-company2" class="input-group-text"
-                                ><i class="bx bx-buildings"></i
+                                ><i class="bx bx-landscape"></i
                               ></span>
                               <input
                                 type="text"
-                                id="direccionEmp"
-                                name="direccionEmp"
+                                id="direccionTrb"
+                                name="direccionTrb"
                                 class="form-control"
                                 placeholder="Av. Quito y 12 de Febrero"
-                                aria-label="ACME Inc."
+                                aria-label="Av. Quito y 12 de Febrero"
                                 aria-describedby="basic-icon-default-company2"
                               />
                             </div>
                           </div>
                         </div>
                         <div class="row mb-3">
-                          <label class="col-sm-2 form-label" for="identificacionEmp"># Identificación</label>
+                          <label class="col-sm-2 form-label" for="fechaTrb">Fecha</label>
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                               <span id="basic-icon-default-phone2" class="input-group-text">
-                              <i class="bx bx-id-card"></i>
+                              <i class="bx bx-calendar"></i>
                               </span>
                               <input
-                                type="text"
-                                id="identificacionEmp"
-                                name="identificacionEmp"
+                                type="datetime-local"
+                                id="fechaTrb"
+                                name="fechaTrb"
                                 class="form-control phone-mask"
-                                placeholder="1002003001"
+                                placeholder="19/06/2023"
                                 aria-label="658 799 8941"
                                 aria-describedby="basic-icon-default-phone2"
                               />
@@ -112,7 +112,26 @@
                           </div>
                         </div>
                         <div class="row mb-3">
-                          <label class="col-sm-2 form-label" for="salarioEmp">Salario (Diario)</label>
+                          <label class="col-sm-2 form-label" for="telefonoTrb">Teléfono</label>
+                          <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                              <span id="basic-icon-default-phone2" class="input-group-text"
+                                ><i class="bx bx-phone"></i>
+                              </span>
+                              <input
+                                type="number"
+                                id="telefonoTrb"
+                                name="telefonoTrb"
+                                class="form-control phone-mask"
+                                placeholder="0991234567"
+                                aria-label="0991234567"
+                                aria-describedby="basic-icon-default-phone2"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label class="col-sm-2 form-label" for="totalTrb">Total</label>
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                               <span id="basic-icon-default-phone2" class="input-group-text"
@@ -120,11 +139,11 @@
                               </span>
                               <input
                                 type="number"
-                                id="salarioEmp"
-                                name="salarioEmp"
+                                id="totalTrb"
+                                name="totalTrb"
                                 class="form-control phone-mask"
-                                placeholder="15"
-                                aria-label="658 799 8941"
+                                placeholder="150"
+                                aria-label="150"
                                 aria-describedby="basic-icon-default-phone2"
                               />
                             </div>
@@ -132,7 +151,7 @@
                         </div>
                         <div class="row justify-content-end">
                           <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Registrar Empleado</button>
+                            <button type="submit" class="btn btn-primary">Registrar Trabajo</button>
                           </div>
                         </div>
                       </form>
@@ -144,7 +163,7 @@
               
             </div>
             <!-- tabla para empleados-->
-            <div class="container-xxl flex-grow-1 container-p-y">
+              <div class="container-xxl flex-grow-1 container-p-y">
                 <div class="card">
                   <h5 class="card-header">Empleados</h5>
                   <div class="table-responsive text-nowrap">
@@ -152,11 +171,12 @@
                       <thead>
                         <tr class="text-nowrap">
                           <th>#</th>
-                          <th>Nombres</th>
-                          <th>Apellidos</th>
-                          <th># Identificación</th>
+                          <th>Fecha</th>
+                          <th>Propietario</th>
+                          <th>Detalle</th>
                           <th>Dirección</th>
-                          <th>$ Salario</th>
+                          <th>Teléfono</th>
+                          <th>Total</th>
                           <th>Acciones</th>
                           
                         </tr>
@@ -165,26 +185,27 @@
                         <tr>
                           </td>
                           <?php
-                            for ($i = 0; $i < count($empleados); $i++) {
-                                $e = $empleados[$i];    
+                            for ($i = 0; $i < count($trabajos); $i++) {
+                                $t = $trabajos[$i];    
                                 echo '
                                     <tr>
-                                        <td name="idEmp">' . $e['emp_id'] . '</td>
-                                        <td>' . $e['emp_nombre'] . '</td>
-                                        <td>' . $e['emp_apellido'] . '</td>
-                                        <td>' . $e['emp_identificacion'] . '</td>
-                                        <td>' . $e['emp_direccion'] . '</td>
-                                        <td>' . $e['emp_salario'] . '</td>
+                                        <td name="idTrb">' . $t['trb_id'] . '</td>
+                                        <td>' . $t['trb_fecha'] . '</td>
+                                        <td>' . $t['trb_propietario'] . '</td>
+                                        <td>' . $t['trb_detalle'] . '</td>
+                                        <td>' . $t['trb_direccion'] . '</td>
+                                        <td>' . $t['trb_telefono'] . '</td>
+                                        <td>' . $t['trb_total'] . '</td>
                                         <td> 
                                           <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                               <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                              <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#modalCenter" onclick= "llenarModalEditE('.$e['emp_id'].',\''.$e['emp_nombre'].'\',\''.$e['emp_apellido'].'\',\''.$e['emp_direccion'].'\',\''.$e['emp_identificacion'].'\','.$e['emp_salario'].')">
+                                              <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#modalCenter" onclick= "llenarModalEditTrabajos('.$t['trb_id'].',\''.$t['trb_detalle'].'\',\''.$t['trb_fecha'].'\',\''.$t['trb_direccion'].'\',\''.$t['trb_telefono'].'\',\''.$t['trb_total'].'\',\''.$t['trb_propietario'].'\')">
                                                 <i class="bx bx-edit-alt me-1"></i> Editar</a>
                                               
-                                              <a class="dropdown-item" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTop" onclick="idEmpleado('.$e['emp_id'].')">
+                                              <a class="dropdown-item" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTop" onclick="idTrabajo('.$t['trb_id'].')">
                                                 <i class="bx bx-trash me-1"></i> Eliminar</a>
                                               
                                             </div>
@@ -193,19 +214,19 @@
                                     </tr>
                                     ';
                             }
-                           ?>
+                          ?>
                         </tr>
                       </tbody>
                     </table>
                   </div>
                 </div>
-             </div>   
+              </div>   
               <!-- Modal -->
               <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="modalCenterTitle">Editar empleado</h5>
+                      <h5 class="modal-title" id="modalCenterTitle">Editar trabajo</h5>
                       <button
                         type="button"
                         class="btn-close"
@@ -214,9 +235,8 @@
                       ></button>
                     </div>
                     <div class="modal-body">
-                    <form  action="<?php echo base_url('editarEmpleado')?>" method="POST">
-                        <div class="row mb-3">
-                          <label class="col-sm-2 col-form-label" for="mnombreEmp">Nombre</label>
+                      <form  action="<?php echo base_url('editarTrabajo')?>" method="POST">
+                        <label class="col-sm-2 col-form-label" for="mpropietarioTrb">Propietario</label>
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                               <span id="basic-icon-default-fullname2" class="input-group-text"
@@ -225,80 +245,92 @@
                               <input
                                 type="text"
                                 class="form-control"
-                                id="mnombreEmp"
-                                name="mnombreEmp"
-                                placeholder="John"
-                                aria-label="John"
-                                aria-describedby="basic-icon-default-fullname2"
-                              /><input
+                                id="midTrb"
+                                name="midTrb"
+                                placeholder="ID"
+                                aria-label="ID"
+                                aria-describedby="basic-icon-default-fullname2" hidden
+                              />
+                              <input
                                 type="text"
                                 class="form-control"
-                                id="midEmp"
-                                name="midEmp"
-                                placeholder="ID"
-                                aria-label="John"
-                                aria-describedby="basic-icon-default-fullname2" hidden
+                                id="mpropietarioTrb"
+                                name="mpropietarioTrb"
+                                placeholder="Jose Enriquez"
+                                aria-label="Jose Enriquez"
+                                aria-describedby="basic-icon-default-fullname2"
                               />
                             </div>
                           </div>
-                            <label class="col-sm-2 col-form-label mt-2" for="mapellidoEmp">Apellido</label>
+                            <label class="col-sm-2 col-form-label mt-2" for="mdetalleTrb">Detalle</label>
                             <div class="col-sm-10 mt-2">
                               <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-fullname2" class="input-group-text"
-                                ><i class="bx bx-user"></i
+                                ><i class="bx bx-detail"></i
                                 ></span>
                                 <input
                                 type="text"
                                 class="form-control"
-                                id="mapellidoEmp"
-                                name="mapellidoEmp"
-                                placeholder="Doe"
-                                aria-label="Doe"
+                                id="mdetalleTrb"
+                                name="mdetalleTrb"
+                                placeholder="Levantamiento"
+                                aria-label="Levantamiento"
                                 aria-describedby="basic-icon-default-fullname2"
                                 />
                               </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                          <label class="col-sm-2 col-form-label" for="mdireccionEmp">Direccion</label>
+                          <label class="col-sm-2 col-form-label" for="mdireccionTrb">Dirección</label>
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                               <span id="basic-icon-default-company2" class="input-group-text"
-                                ><i class="bx bx-buildings"></i
+                                ><i class="bx bx-landscape"></i
                               ></span>
                               <input
                                 type="text"
-                                id="mdireccionEmp"
-                                name="mdireccionEmp"
+                                id="mdireccionTrb"
+                                name="mdireccionTrb"
                                 class="form-control"
                                 placeholder="Av. Quito y 12 de Febrero"
-                                aria-label="ACME Inc."
+                                aria-label="Av. Quito y 12 de Febrero"
                                 aria-describedby="basic-icon-default-company2"
                               />
                             </div>
                           </div>
-                        </div>
-                        <div class="row mb-3">
-                          <label class="col-sm-2 form-label" for="midentificacionEmp"># Identificación</label>
+                          <label class="col-sm-2 form-label" for="mfechaTrb">Fecha</label>
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                               <span id="basic-icon-default-phone2" class="input-group-text">
-                              <i class="bx bx-id-card"></i>
+                              <i class="bx bx-calendar"></i>
                               </span>
                               <input
-                                type="text"
-                                id="midentificacionEmp"
-                                name="midentificacionEmp"
+                                type="datetime-local"
+                                id="mfechaTrb"
+                                name="mfechaTrb"
                                 class="form-control phone-mask"
-                                placeholder="1002003001"
+                                placeholder="19/06/2023"
                                 aria-label="658 799 8941"
                                 aria-describedby="basic-icon-default-phone2"
                               />
                             </div>
                           </div>
-                        </div>
-                        <div class="row mb-3">
-                          <label class="col-sm-2 form-label" for="msalarioEmp">Salario (Diario)</label>
+                          <label class="col-sm-2 form-label" for="mtelefonoTrb">Teléfono</label>
+                          <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                              <span id="basic-icon-default-phone2" class="input-group-text"
+                                ><i class="bx bx-phone"></i>
+                              </span>
+                              <input
+                                type="number"
+                                id="mtelefonoTrb"
+                                name="mtelefonoTrb"
+                                class="form-control phone-mask"
+                                placeholder="0991234567"
+                                aria-label="0991234567"
+                                aria-describedby="basic-icon-default-phone2"
+                              />
+                            </div>
+                          </div>
+                          <label class="col-sm-2 form-label" for="mtotalTrb">Total</label>
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                               <span id="basic-icon-default-phone2" class="input-group-text"
@@ -306,16 +338,15 @@
                               </span>
                               <input
                                 type="number"
-                                id="msalarioEmp"
-                                name="msalarioEmp"
+                                id="mtotalTrb"
+                                name="mtotalTrb"
                                 class="form-control phone-mask"
-                                placeholder="15"
-                                aria-label="658 799 8941"
+                                placeholder="150"
+                                aria-label="150"
                                 aria-describedby="basic-icon-default-phone2"
                               />
                             </div>
                           </div>
-                        </div>
                         <div class="row justify-content-end">
                           <div class="col-sm-10">
                             <button type="submit" class="btn btn-primary">Guardar Cambios</button>
@@ -336,7 +367,7 @@
                 <div class="modal-dialog">
                   <form class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="modalTopTitle">¿Desea eliminar al Empleado?</h5>
+                      <h5 class="modal-title" id="modalTopTitle">¿Desea eliminar el Trabajo?</h5>
                       <button
                         type="button"
                         class="btn-close"
@@ -345,14 +376,14 @@
                       ></button>
                     </div>
                     <div class="modal-body">
-                      <input type="text" id="modalEmp" hidden>
+                      <input type="text" id="modalTrb" hidden>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                         Cerrar
                       </button>
                       <!-- onclick="deleteEmpleado(\''.base_url().'\','.$empleados[$i]['emp_id'].')" -->
-                      <button type="submit" class="btn btn-primary" onclick='deleteEmpleado("<?php base_url() ?>")'>Eliminar</button>
+                      <button type="submit" class="btn btn-primary" onclick='deleteTrabajo("<?php base_url() ?>")'>Eliminar</button>
                     </div>
                   </form>
                 </div>

@@ -141,13 +141,19 @@
             </li>
             <li class="menu-item">
               <a href="<?php echo base_url('empleados')?>" class="menu-link">
-              <i class='menu-icon tf-icons bx bx-window-close'></i>
+              <i class='bx bxs-user-pin'></i>
                 <div data-i18n="Analytics">EMPLEADOS</div>
               </a>
             </li>
             <li class="menu-item">
+              <a href="<?php echo base_url('trabajos')?>" class="menu-link">
+              <i class='bx bxs-briefcase' ></i>
+                <div data-i18n="Analytics">TRABAJOS</div>
+              </a>
+            </li>
+            <li class="menu-item">
               <a href="<?php echo base_url('cerrar')?>" class="menu-link">
-              <i class='menu-icon tf-icons bx bx-window-close'></i>
+              <i class="bx bx-power-off me-2"></i>
                 <div data-i18n="Analytics">CERRAR SESIÓN</div>
               </a>
             </li> 

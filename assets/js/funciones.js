@@ -27,20 +27,27 @@ function llenarModalEditE(id, nombre, apellido, direccion, identificacion, salar
     $("#midentificacionEmp").val(identificacion);
     $("#msalarioEmp").val(salario);
 }
-function editarEmp(url) {
-    var midEmp = $('#midEmp').val();
-    var mnombreEmp = $('#mnombreEmp').val();
-    var mapellidoEmp = $('#mapellidoEmp').val();
-    var mdireccionEmp = $('#mdireccionEmp').val();
-    var midentificacionEmp = $('#midentificacionEmp').val();
-    var msalarioEmp = $('#msalarioEmp').val();
-    console.log( midEmp, mnombreEmp, mapellidoEmp, mdireccionEmp, midentificacionEmp, msalarioEmp);
+function llenarModalEditTrabajos(id, detalle, fecha, direccion, telefono, total,propietario){
+    $("#midTrb").val(id);
+    $("#mdetalleTrb").val(detalle);
+    $("#mfechaTrb").val(fecha);
+    $("#mdireccionTrb").val(direccion);
+    $("#mtelefonoTrb").val(telefono);
+    $("#mtotalTrb").val(total);
+    $("#mpropietarioTrb").val(propietario);
+}
+function idTrabajo(id) {
+    $('#modalTrb').val(id);
+}
+function deleteTrabajo(url) {
+    urlBase = url
+    var id = $('#modalTrb').val();
     $.ajax({
         type: "post",
-        url: url + 'editarEmpleado',
-        data: { midEmp: midEmp, mnombreEmp:mnombreEmp, mapellidoEmp:mapellidoEmp, mdireccionEmp:mdireccionEmp, midentificacionEmp:midentificacionEmp, msalarioEmp:msalarioEmp},
+        url: url + 'eliminarTrabajo',
+        data: { id: id },
         success: function (r) {
-            window.location.href = url + "empleados";
+            window.location.href = url + "trabajos";
         },
         error : function(xhr, status) {
             alert('Disculpe, existió un problema');
