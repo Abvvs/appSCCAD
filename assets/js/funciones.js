@@ -1,5 +1,14 @@
 let idEst=0;
 let urlBase = "";
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2({
+        
+    });
+    $('#mSelect').select2({
+        dropdownParent: $("#modalCenter")
+    });
+    
+});
 function deleteEmpleado(url) {
     urlBase = url
     var id = $('#modalEmp').val();
@@ -19,13 +28,15 @@ function deleteEmpleado(url) {
 function idEmpleado(id) {
     $('#modalEmp').val(id);
 }
-function llenarModalEditE(id, nombre, apellido, direccion, identificacion, salario){
+function llenarModalEditE(id, nombre, apellido, direccion, identificacion, salario, rol){
     $("#midEmp").val(id);
     $("#mnombreEmp").val(nombre);
     $("#mapellidoEmp").val(apellido);
     $("#mdireccionEmp").val(direccion);
     $("#midentificacionEmp").val(identificacion);
     $("#msalarioEmp").val(salario);
+    $("#mrolEmp option:selected").attr("selected", false);
+    $(`#mrolEmp option:contains("${rol}")`).attr("selected", true).change();
 }
 function llenarModalEditTrabajos(id, detalle, fecha, direccion, telefono, total,propietario){
     $("#midTrb").val(id);

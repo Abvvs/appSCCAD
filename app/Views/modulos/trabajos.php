@@ -149,6 +149,27 @@
                             </div>
                           </div>
                         </div>
+                        <div class="row mb-3">
+                          <label class="col-sm-2 form-label" for="totalTrb">Empleados</label>
+                            <div class="col-sm-10">
+                              <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-phone2" class="input-group-text"
+                                ><i class="bx bx-user-plus"></i>
+                              </span>
+                              <select class="js-example-basic-multiple" name="empleados[]" multiple="multiple" style="width:93.9%">
+                              <?php
+                                  for($i = 0; $i < count($empleados); $i++){
+                                    $e = $empleados[$i];
+                                    echo'
+                                      <option value='.$e['emp_id'].'>'.$e['emp_nombre'].'</option>
+                                    ';
+                                  }
+                                ?>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        
                         <div class="row justify-content-end">
                           <div class="col-sm-10">
                             <button type="submit" class="btn btn-primary">Registrar Trabajo</button>
@@ -165,7 +186,7 @@
             <!-- tabla para empleados-->
               <div class="container-xxl flex-grow-1 container-p-y">
                 <div class="card">
-                  <h5 class="card-header">Empleados</h5>
+                  <h5 class="card-header">Trabajos</h5>
                   <div class="table-responsive text-nowrap">
                     <table class="table">
                       <thead>
@@ -177,42 +198,56 @@
                           <th>Dirección</th>
                           <th>Teléfono</th>
                           <th>Total</th>
+                          <th>Responsables</th>
                           <th>Acciones</th>
                           
                         </tr>
                       </thead>
                       <tbody>
+                        <!--  -->
                         <tr>
                           </td>
                           <?php
                             for ($i = 0; $i < count($trabajos); $i++) {
-                                $t = $trabajos[$i];    
-                                echo '
+                                $t = $trabajos[$i]; 
+                                ?>   
                                     <tr>
-                                        <td name="idTrb">' . $t['trb_id'] . '</td>
-                                        <td>' . $t['trb_fecha'] . '</td>
-                                        <td>' . $t['trb_propietario'] . '</td>
-                                        <td>' . $t['trb_detalle'] . '</td>
-                                        <td>' . $t['trb_direccion'] . '</td>
-                                        <td>' . $t['trb_telefono'] . '</td>
-                                        <td>' . $t['trb_total'] . '</td>
+                                        <td name="idTrb"><?= $t['trb_id'] ?></td>
+                                        <td><?= $t['trb_fecha'] ?></td>
+                                        <td><?= $t['trb_propietario'] ?></td>
+                                        <td><?= $t['trb_detalle'] ?></td>
+                                        <td><?= $t['trb_direccion'] ?></td>
+                                        <td><?= $t['trb_telefono'] ?></td>
+                                        <td><?= $t['trb_total'] ?></td>
+                                        <td><?php 
+                                        //var_dump(count($responsables))
+                                        for ($j=0; $j < count($responsables); $j++) { 
+                                          $r = $responsables[$j];
+                                          if($r['tbl_trabajos_trb_id']==$t['trb_id']){
+                                            echo'
+                                            '.$r['emp_nombre'].' '.$r['emp_apellido'].',
+                                            ';
+                                          }
+                                        }
+                                        ?>
+                                        </td>
                                         <td> 
                                           <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                               <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                              <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#modalCenter" onclick= "llenarModalEditTrabajos('.$t['trb_id'].',\''.$t['trb_detalle'].'\',\''.$t['trb_fecha'].'\',\''.$t['trb_direccion'].'\',\''.$t['trb_telefono'].'\',\''.$t['trb_total'].'\',\''.$t['trb_propietario'].'\')">
+                                              <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#modalCenter" onclick= "llenarModalEditTrabajos('<?=$t['trb_id']?>,\'<?=$t['trb_detalle']?>\',\'<?=$t['trb_fecha']?>\',\'<?=$t['trb_direccion']?>\',\'<?=$t['trb_telefono']?>\',\'<?=$t['trb_total']?>\',\'<?=$t['trb_propietario']?>\'')">
                                                 <i class="bx bx-edit-alt me-1"></i> Editar</a>
                                               
-                                              <a class="dropdown-item" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTop" onclick="idTrabajo('.$t['trb_id'].')">
+                                              <a class="dropdown-item" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTop" onclick="idTrabajo(<?=$t['trb_id']?>)">
                                                 <i class="bx bx-trash me-1"></i> Eliminar</a>
                                               
                                             </div>
                                           </div>
                                         </td>
                                     </tr>
-                                    ';
+                             <?php       
                             }
                           ?>
                         </tr>
@@ -347,7 +382,25 @@
                               />
                             </div>
                           </div>
-                        <div class="row justify-content-end">
+                          <label class="col-sm-2 form-label" for="totalTrb">Responsables</label>
+                            <div class="col-sm-10">
+                              <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-phone2" class="input-group-text"
+                                ><i class="bx bx-user-plus"></i>
+                                </span>
+                                <select class="js-example-basic-multiple" id="mSelect" name="mempleados[]" multiple="multiple" style="width:87%">
+                                  <?php
+                                      for($i = 0; $i < count($empleados); $i++){
+                                        $e = $empleados[$i];
+                                        echo'
+                                          <option value='.$e['emp_id'].'>'.$e['emp_nombre'].'</option>
+                                        ';
+                                      }
+                                    ?>
+                                  </select>
+                              </div>
+                            </div>
+                        <div class="row justify-content-end mt-5">
                           <div class="col-sm-10">
                             <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                           </div>

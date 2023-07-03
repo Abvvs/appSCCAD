@@ -19,23 +19,33 @@ class TrabajosController extends BaseController
         if ($this->session->has('usuario')){
             $datos = ['usuario' => $this->session->get('usuario')];
             $model = new \App\Models\modelTrabajos();
+            $modelEmpleados = new \App\Models\modelEmpleados();
+            $modelEmpTrb = new \App\Models\modelEmpTrb();
+            $empleados = $modelEmpleados->selectEmpleados();
             $trabajos = $model->selectTrabajos();
-            $resp = ['trabajos' => $trabajos];
+            $responsables = $modelEmpTrb->selectEmpTrb();
+            $resp = ['trabajos' => $trabajos, 'empleados' => $empleados, 'responsables'=>$responsables];
             return view('layouts/header') . view('layouts/aside', $datos) . view('modulos/trabajos', $resp) . view('layouts/footer');
         }
         return view('usuarios/login', ["error" => "Usuario o contraseña incorrectos"]);     
     }
     public function agregarTrabajos(){
-        if (isset($_POST['propietarioTrb']) && isset($_POST['detalleTrb']) && isset($_POST['direccionTrb']) && isset($_POST['fechaTrb'])&& isset($_POST['telefonoTrb'])&& isset($_POST['totalTrb'])) {
+        if (isset($_POST['propietarioTrb']) && isset($_POST['detalleTrb']) && isset($_POST['direccionTrb']) && isset($_POST['fechaTrb'])&& isset($_POST['telefonoTrb'])&& isset($_POST['totalTrb']) && isset($_POST['empleados'])) {
             $propietario = $_POST['propietarioTrb'];
             $detalle = $_POST['detalleTrb'];
             $direccion = $_POST['direccionTrb'];
             $fecha = $_POST['fechaTrb'];
             $telefono = $_POST['telefonoTrb'];
             $total = $_POST['totalTrb'];
+            $empleados =  $_POST['empleados'];
             $model = new \App\Models\modelTrabajos();
-            $consulta = $model->insertarTrabajo($detalle, $fecha, $direccion, $telefono, $total, $propietario);        
-            return redirect()->back();
+            $modelEmpTrb = new \App\Models\modelEmpTrb();
+            $consulta = $model->insertarTrabajo($detalle, $fecha, $direccion, $telefono, $total, $propietario);   
+            $ultimo = $model ->ultimoTrabajo();
+            $consulta2 = $modelEmpTrb->insertEmpTrb($ultimo[0]['trb_id'], $empleados);
+            //var_dump($ultimo);
+            //return var_dump($ultimo[0]['trb_id']);     
+            return redirect()->back(); 
         } else {
             return 'Hubo un error, vuelva a intentar';
         }

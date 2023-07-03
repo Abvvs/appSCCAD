@@ -65,5 +65,14 @@ class modelTrabajos extends Model
         
         return  'Se han guardado los cambios';
     }
+    public function ultimoTrabajo(){
+        $consulta = $this->db->table('tbl_trabajos t');
+        $consulta->where('t.trb_estado', 1);
+        $consulta->limit(1);
+        $consulta->orderBy('t.trb_id', 'DESC');
+        $query = $consulta->get();
+        $respuesta = $query->getResultArray();
+        return $respuesta;
+    }
     
 }

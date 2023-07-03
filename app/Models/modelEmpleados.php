@@ -24,7 +24,7 @@ class modelEmpleados extends Model
         return $respuesta;
     }
 
-    public function insertarEmpleado($nombre, $apellido, $direccion, $identificacion, $salario)
+    public function insertarEmpleado($nombre, $apellido, $direccion, $identificacion, $salario, $rol)
     {
         $consulta = $this->db->table('tbl_empleados');
         $resp = [
@@ -33,6 +33,7 @@ class modelEmpleados extends Model
             'emp_direccion' => $direccion,
             'emp_identificacion' => $identificacion,
             'emp_salario' => $salario,
+            'tbl_roles_rol_id'=>$rol,
             'emp_estado' => 1
         ];
         $consulta -> insert($resp);
@@ -42,7 +43,8 @@ class modelEmpleados extends Model
     public function selectEmpleados()
     {
         $consulta = $this->db->table('tbl_empleados e');
-        $consulta->select('e.emp_id,e.emp_nombre,e.emp_apellido, e.emp_direccion, e.emp_identificacion,e.emp_salario');
+        $consulta->select('e.emp_id,e.emp_nombre,e.emp_apellido, e.emp_direccion, e.emp_identificacion,e.emp_salario, r.rol_id, r.rol_nombre');
+        $consulta->join('tbl_roles r', 'r.rol_id=e.tbl_roles_rol_id');
         $consulta->where('e.emp_estado', 1);
         $query = $consulta->get();
         $respuesta = $query->getResultArray();
@@ -58,7 +60,7 @@ class modelEmpleados extends Model
         $consulta->update($resp);
         return  'Eliminado correctamente';
     }
-    public function editEmpleados($id,$nombre, $apellido, $direccion, $identificacion, $salario)
+    public function editEmpleados($id,$nombre, $apellido, $direccion, $identificacion, $salario, $rol)
     {
         $consulta = $this->db->table('tbl_empleados e');
         $consulta->where('e.emp_id', $id);
@@ -68,6 +70,7 @@ class modelEmpleados extends Model
             'emp_direccion' => $direccion,
             'emp_identificacion' => $identificacion,
             'emp_salario' => $salario,
+            'tbl_roles_rol_id'=>$rol,
             'emp_estado' => 1
         ];
         $consulta->update($resp);

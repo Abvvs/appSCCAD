@@ -130,6 +130,27 @@
                             </div>
                           </div>
                         </div>
+                        <div class="row mb-3">
+                          <label class="col-sm-2 form-label" for="rolEmp">Rol</label>
+                          <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                              <span id="basic-icon-default-phone2" class="input-group-text"
+                                ><i class="bx bx-briefcase"></i>
+                              </span>
+                              <select class="form-select" id="rolEmp" aria-label="Default select example" name="rolEmp">
+                                <option selected>Seleccione un Rol</option>
+                                <?php
+                                  for($i = 0; $i < count($roles); $i++){
+                                    $r = $roles[$i];
+                                    echo'
+                                      <option value='.$r['rol_id'].'>'.$r['rol_nombre'].'</option>
+                                    ';
+                                  }
+                                ?>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
                         <div class="row justify-content-end">
                           <div class="col-sm-10">
                             <button type="submit" class="btn btn-primary">Registrar Empleado</button>
@@ -157,6 +178,7 @@
                           <th># Identificación</th>
                           <th>Dirección</th>
                           <th>$ Salario</th>
+                          <th>Rol</th>
                           <th>Acciones</th>
                           
                         </tr>
@@ -175,13 +197,14 @@
                                         <td>' . $e['emp_identificacion'] . '</td>
                                         <td>' . $e['emp_direccion'] . '</td>
                                         <td>' . $e['emp_salario'] . '</td>
+                                        <td>' . $e['rol_nombre'] . '</td>
                                         <td> 
                                           <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                               <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                              <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#modalCenter" onclick= "llenarModalEditE('.$e['emp_id'].',\''.$e['emp_nombre'].'\',\''.$e['emp_apellido'].'\',\''.$e['emp_direccion'].'\',\''.$e['emp_identificacion'].'\','.$e['emp_salario'].')">
+                                              <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#modalCenter" onclick= "llenarModalEditE('.$e['emp_id'].',\''.$e['emp_nombre'].'\',\''.$e['emp_apellido'].'\',\''.$e['emp_direccion'].'\',\''.$e['emp_identificacion'].'\',\''.$e['emp_salario'].'\',\''.$e['rol_nombre'].'\')">
                                                 <i class="bx bx-edit-alt me-1"></i> Editar</a>
                                               
                                               <a class="dropdown-item" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTop" onclick="idEmpleado('.$e['emp_id'].')">
@@ -313,6 +336,27 @@
                                 aria-label="658 799 8941"
                                 aria-describedby="basic-icon-default-phone2"
                               />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label class="col-sm-2 form-label" for="rolEmp">Rol</label>
+                          <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                              <span id="basic-icon-default-phone2" class="input-group-text"
+                                ><i class="bx bx-briefcase"></i>
+                              </span>
+                              <select class="form-select" id="mrolEmp" aria-label="Default select example" name="mrolEmp">
+                                <option selected>Seleccione un Rol</option>
+                                <?php
+                                  for($i = 0; $i < count($roles); $i++){
+                                    $r = $roles[$i];
+                                    echo'
+                                      <option value='.$r['rol_id'].'>'.$r['rol_nombre'].'</option>
+                                    ';
+                                  }
+                                ?>
+                              </select>
                             </div>
                           </div>
                         </div>
