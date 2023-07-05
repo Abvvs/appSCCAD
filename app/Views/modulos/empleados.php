@@ -38,7 +38,7 @@
                       <form action="<?php echo base_url('nuevoEmpleado'); ?>" method="POST">
                         <div class="row mb-3">
                           <h4>Nuevo Empleado</h4>
-                          <label class="col-sm-2 col-form-label" for="nombreEmp">Nombre</label>
+                          <label class="col-sm-2 col-form-label" for="nombreEmp">Nombres</label>
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                               <span id="basic-icon-default-fullname2" class="input-group-text"
@@ -51,11 +51,11 @@
                                 name="nombreEmp"
                                 placeholder="John"
                                 aria-label="John"
-                                aria-describedby="basic-icon-default-fullname2"
+                                aria-describedby="basic-icon-default-fullname2" required
                               />
                             </div>
                           </div>
-                            <label class="col-sm-2 col-form-label mt-2" for="apellidoEmp">Apellido</label>
+                            <label class="col-sm-2 col-form-label mt-2" for="apellidoEmp">Apellidos</label>
                             <div class="col-sm-10 mt-2">
                               <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-fullname2" class="input-group-text"
@@ -68,7 +68,7 @@
                                 name="apellidoEmp"
                                 placeholder="Doe"
                                 aria-label="Doe"
-                                aria-describedby="basic-icon-default-fullname2"
+                                aria-describedby="basic-icon-default-fullname2" required
                                 />
                               </div>
                             </div>
@@ -87,7 +87,7 @@
                                 class="form-control"
                                 placeholder="Av. Quito y 12 de Febrero"
                                 aria-label="ACME Inc."
-                                aria-describedby="basic-icon-default-company2"
+                                aria-describedby="basic-icon-default-company2" required
                               />
                             </div>
                           </div>
@@ -106,7 +106,7 @@
                                 class="form-control phone-mask"
                                 placeholder="1002003001"
                                 aria-label="658 799 8941"
-                                aria-describedby="basic-icon-default-phone2"
+                                aria-describedby="basic-icon-default-phone2" required
                               />
                             </div>
                           </div>
@@ -125,7 +125,7 @@
                                 class="form-control phone-mask"
                                 placeholder="15"
                                 aria-label="658 799 8941"
-                                aria-describedby="basic-icon-default-phone2"
+                                aria-describedby="basic-icon-default-phone2" required
                               />
                             </div>
                           </div>
@@ -228,7 +228,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="modalCenterTitle">Editar empleado</h5>
+                      <h5 class="modal-title" id="modalCenterTitle">Editar Empleado</h5>
                       <button
                         type="button"
                         class="btn-close"
@@ -239,7 +239,7 @@
                     <div class="modal-body">
                     <form  action="<?php echo base_url('editarEmpleado')?>" method="POST">
                         <div class="row mb-3">
-                          <label class="col-sm-2 col-form-label" for="mnombreEmp">Nombre</label>
+                          <label class="col-sm-2 col-form-label" for="mnombreEmp">Nombres</label>
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                               <span id="basic-icon-default-fullname2" class="input-group-text"
@@ -252,7 +252,7 @@
                                 name="mnombreEmp"
                                 placeholder="John"
                                 aria-label="John"
-                                aria-describedby="basic-icon-default-fullname2"
+                                aria-describedby="basic-icon-default-fullname2" required
                               /><input
                                 type="text"
                                 class="form-control"
@@ -260,11 +260,11 @@
                                 name="midEmp"
                                 placeholder="ID"
                                 aria-label="John"
-                                aria-describedby="basic-icon-default-fullname2" hidden
+                                aria-describedby="basic-icon-default-fullname2" hidden 
                               />
                             </div>
                           </div>
-                            <label class="col-sm-2 col-form-label mt-2" for="mapellidoEmp">Apellido</label>
+                            <label class="col-sm-2 col-form-label mt-2" for="mapellidoEmp">Apellidos</label>
                             <div class="col-sm-10 mt-2">
                               <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-fullname2" class="input-group-text"
@@ -277,13 +277,13 @@
                                 name="mapellidoEmp"
                                 placeholder="Doe"
                                 aria-label="Doe"
-                                aria-describedby="basic-icon-default-fullname2"
+                                aria-describedby="basic-icon-default-fullname2" required
                                 />
                               </div>
                             </div>
                         </div>
                         <div class="row mb-3">
-                          <label class="col-sm-2 col-form-label" for="mdireccionEmp">Direccion</label>
+                          <label class="col-sm-2 col-form-label" for="mdireccionEmp">Dirección</label>
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                               <span id="basic-icon-default-company2" class="input-group-text"
@@ -296,7 +296,7 @@
                                 class="form-control"
                                 placeholder="Av. Quito y 12 de Febrero"
                                 aria-label="ACME Inc."
-                                aria-describedby="basic-icon-default-company2"
+                                aria-describedby="basic-icon-default-company2" required
                               />
                             </div>
                           </div>
@@ -315,7 +315,7 @@
                                 class="form-control phone-mask"
                                 placeholder="1002003001"
                                 aria-label="658 799 8941"
-                                aria-describedby="basic-icon-default-phone2"
+                                aria-describedby="basic-icon-default-phone2" required
                               />
                             </div>
                           </div>
@@ -334,7 +334,7 @@
                                 class="form-control phone-mask"
                                 placeholder="15"
                                 aria-label="658 799 8941"
-                                aria-describedby="basic-icon-default-phone2"
+                                aria-describedby="basic-icon-default-phone2" required
                               />
                             </div>
                           </div>
@@ -396,7 +396,7 @@
                         Cerrar
                       </button>
                       <!-- onclick="deleteEmpleado(\''.base_url().'\','.$empleados[$i]['emp_id'].')" -->
-                      <button type="submit" class="btn btn-primary" onclick='deleteEmpleado("<?php base_url() ?>")'>Eliminar</button>
+                      <button type="submit" class="btn btn-primary" onclick='deleteEmpleado("<?php base_url() ?>")'>Confirmar</button>
                     </div>
                   </form>
                 </div>

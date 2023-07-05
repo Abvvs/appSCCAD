@@ -93,7 +93,7 @@
                           </div>
                         </div>
                         <div class="row mb-3">
-                          <label class="col-sm-2 form-label" for="fechaTrb">Fecha</label>
+                          <label class="col-sm-2 form-label" for="fechaTrb">Fecha y hora</label>
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                               <span id="basic-icon-default-phone2" class="input-group-text">
@@ -192,7 +192,7 @@
                       <thead>
                         <tr class="text-nowrap">
                           <th>#</th>
-                          <th>Fecha</th>
+                          <th>Fecha y hora</th>
                           <th>Propietario</th>
                           <th>Detalle</th>
                           <th>Dirección</th>
@@ -237,7 +237,7 @@
                                               <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                              <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#modalCenter" onclick= "llenarModalEditTrabajos('<?=$t['trb_id']?>,\'<?=$t['trb_detalle']?>\',\'<?=$t['trb_fecha']?>\',\'<?=$t['trb_direccion']?>\',\'<?=$t['trb_telefono']?>\',\'<?=$t['trb_total']?>\',\'<?=$t['trb_propietario']?>\'')">
+                                              <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" onclick="llenarModalEditTrabajos(<?=$t['trb_id']?>, <?=$t['trb_detalle']?>, <?=$t['trb_fecha']?>, <?=$t['trb_direccion']?>, <?=$t['trb_telefono']?>, <?=$t['trb_total']?>, <?=$t['trb_propietario']?>)" id="botonEditarTrb">
                                                 <i class="bx bx-edit-alt me-1"></i> Editar</a>
                                               
                                               <a class="dropdown-item" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTop" onclick="idTrabajo(<?=$t['trb_id']?>)">

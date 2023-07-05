@@ -74,5 +74,15 @@ class modelTrabajos extends Model
         $respuesta = $query->getResultArray();
         return $respuesta;
     }
+    public function validarDatos($detalle, $fecha, $direccion, $telefono, $total, $propietario){
+        if($detalle != "" && $fecha!= "" && $direccion!= "" && $telefono!= "" && $total!= "" && $propietario!= ""){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //validar datos
+    //
     
 }

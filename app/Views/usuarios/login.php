@@ -126,7 +126,7 @@
               <h4 class="mb-2">Iniciar Sesión 👋</h4>
               <p class="mb-4">Ingresa tus credenciales para entrar en nuestro sistema</p>
 
-              <form id="formAuthentication" class="mb-3" action="<?php echo base_url('inicio')?>" method="POST">
+              <form id="formAuthentication" class="mb-3" action="<?php echo base_url('')?>" method="POST">
                 <div class="mb-3">
                   <label for="email" class="form-label">Nombre de usuario</label>
                   <input

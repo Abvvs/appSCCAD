@@ -13,17 +13,6 @@ class modelEmpleados extends Model
         $this->db = \Config\Database::connect();
     }
 
-    public function login($user)
-    {
-        $consulta = $this->db->table('tbl_usuarios u');
-        $consulta->select('u.us_id,u.us_estado ,u.us_usuario, u.us_password');
-        $consulta->where('u.us_usuario', $user['USUARIO']);
-        $consulta->where('u.us_password', $user['PASSWORD']);
-        $query = $consulta->get();
-        $respuesta = $query->getResultArray();
-        return $respuesta;
-    }
-
     public function insertarEmpleado($nombre, $apellido, $direccion, $identificacion, $salario, $rol)
     {
         $consulta = $this->db->table('tbl_empleados');
@@ -40,7 +29,7 @@ class modelEmpleados extends Model
         return 'Registro exitoso';
     }
 
-    public function selectEmpleados()
+    public function seleccionarEmpleados()
     {
         $consulta = $this->db->table('tbl_empleados e');
         $consulta->select('e.emp_id,e.emp_nombre,e.emp_apellido, e.emp_direccion, e.emp_identificacion,e.emp_salario, r.rol_id, r.rol_nombre');
@@ -50,7 +39,7 @@ class modelEmpleados extends Model
         $respuesta = $query->getResultArray();
         return $respuesta;
     }
-    public function deleteEmpleados($id)
+    public function eliminarEmpleados($id)
     {
         $consulta = $this->db->table('tbl_empleados e');
         $consulta->where('e.emp_id', $id);
@@ -60,7 +49,7 @@ class modelEmpleados extends Model
         $consulta->update($resp);
         return  'Eliminado correctamente';
     }
-    public function editEmpleados($id,$nombre, $apellido, $direccion, $identificacion, $salario, $rol)
+    public function editarEmpleados($id,$nombre, $apellido, $direccion, $identificacion, $salario, $rol)
     {
         $consulta = $this->db->table('tbl_empleados e');
         $consulta->where('e.emp_id', $id);
@@ -77,4 +66,25 @@ class modelEmpleados extends Model
         
         return  'Se han guardado los cambios';
     }
+    public function verificarEmpleado($identificacion){
+        $consulta = $this->db->table('tbl_empleados e');
+        $consulta->where('e.emp_identificacion', $identificacion);
+        $consulta->where('e.emp_estado', 1);
+        $query = $consulta->get();
+        $respuesta = $query->getResultArray();
+        if($respuesta != null){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public function validarDatos($id,$nombre, $apellido, $direccion, $identificacion, $salario, $rol){
+        if($nombre != "" && $apellido != "" && $direccion != "" && $identificacion != "" && $salario != "" && $rol!= "Seleccione un Rol"){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
 }

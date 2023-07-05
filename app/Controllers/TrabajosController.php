@@ -21,7 +21,7 @@ class TrabajosController extends BaseController
             $model = new \App\Models\modelTrabajos();
             $modelEmpleados = new \App\Models\modelEmpleados();
             $modelEmpTrb = new \App\Models\modelEmpTrb();
-            $empleados = $modelEmpleados->selectEmpleados();
+            $empleados = $modelEmpleados->seleccionarEmpleados();
             $trabajos = $model->selectTrabajos();
             $responsables = $modelEmpTrb->selectEmpTrb();
             $resp = ['trabajos' => $trabajos, 'empleados' => $empleados, 'responsables'=>$responsables];
@@ -40,11 +40,12 @@ class TrabajosController extends BaseController
             $empleados =  $_POST['empleados'];
             $model = new \App\Models\modelTrabajos();
             $modelEmpTrb = new \App\Models\modelEmpTrb();
-            $consulta = $model->insertarTrabajo($detalle, $fecha, $direccion, $telefono, $total, $propietario);   
-            $ultimo = $model ->ultimoTrabajo();
-            $consulta2 = $modelEmpTrb->insertEmpTrb($ultimo[0]['trb_id'], $empleados);
-            //var_dump($ultimo);
-            //return var_dump($ultimo[0]['trb_id']);     
+            $validar = $model->validarDatos($detalle, $fecha, $direccion, $telefono, $total, $propietario);
+            if($validar == true){
+                $consulta = $model->insertarTrabajo($detalle, $fecha, $direccion, $telefono, $total, $propietario);   
+                $ultimo = $model ->ultimoTrabajo();
+                $consulta2 = $modelEmpTrb->insertEmpTrb($ultimo[0]['trb_id'], $empleados);
+            }
             return redirect()->back(); 
         } else {
             return 'Hubo un error, vuelva a intentar';
@@ -62,7 +63,6 @@ class TrabajosController extends BaseController
             $total = $_POST['mtotalTrb'];
             $model = new \App\Models\modelTrabajos();
             $consulta = $model->editTrabajos($id,$detalle, $fecha, $direccion, $telefono, $total, $propietario);            
-            //return redirect()->route('empleados');
             return redirect()->back();
 
         } else {
@@ -71,17 +71,14 @@ class TrabajosController extends BaseController
     }
     public function eliminarTrabajos()
     {
-        //echo($empId);
         if (isset($_POST['id'])) {
             $id = $_POST['id'];
-       //if($empId != null){
             $model = new \App\Models\modelTrabajos();
             $consulta = $model->deleteTrabajos($id);
-            //$empleados = $model->selectEmpleados();
-           // $resp = ['empleados' => $empleados];
-           // return view ('layouts/header') . view('layouts/aside', $datos) . view('modulos/empleados', $resp) . view('layouts/footer');
         } else {
             return 'Hubo un error, vuelva a intentar';
         }     
     }
+    //generar codigo
+    
 }

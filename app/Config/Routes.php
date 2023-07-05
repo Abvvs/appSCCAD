@@ -29,14 +29,20 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'EmpleadosController::index');
-$routes->post('/inicio', 'EmpleadosController::index');
-$routes->get('/cerrar', 'EmpleadosController::cerrarSesion');
-$routes->get('/empleados', 'EmpleadosController::empleados');
-$routes->post('/empleados', 'EmpleadosController::empleados');
-$routes->post('/nuevoEmpleado', 'EmpleadosController::insertE');
-$routes->post('/eliminarEmpleado', 'EmpleadosController::deleteE');
-$routes->post('/editarEmpleado', 'EmpleadosController::editE');
+
+/* Rutas para la gestion de Sesiones */
+$routes->get('/', 'AccesoController::index');
+$routes->post('/', 'AccesoController::index');
+$routes->get('/cerrar', 'AccesoController::cerrarSesion');
+
+/* Rutas para la gestión de empleados */
+$routes->get('/empleados', 'EmpleadosController::vistaEmpleados');
+$routes->post('/empleados', 'EmpleadosController::vistaEmpleados');
+$routes->post('/nuevoEmpleado', 'EmpleadosController::insertEmpleados');
+$routes->post('/eliminarEmpleado', 'EmpleadosController::deleteEmpleados');
+$routes->post('/editarEmpleado', 'EmpleadosController::editEmpleados');
+
+/* Rutas para la gestión de trabajos */
 $routes->get('/trabajos', 'TrabajosController::trabajos');
 $routes->post('/nuevoTrabajo', 'TrabajosController::agregarTrabajos');
 $routes->post('/editarTrabajo', 'TrabajosController::editarTrabajos');

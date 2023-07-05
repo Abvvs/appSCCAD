@@ -39,6 +39,7 @@ function llenarModalEditE(id, nombre, apellido, direccion, identificacion, salar
     $(`#mrolEmp option:contains("${rol}")`).attr("selected", true).change();
 }
 function llenarModalEditTrabajos(id, detalle, fecha, direccion, telefono, total,propietario){
+    alert(id, detalle, fecha, direccion, telefono, total,propietario);
     $("#midTrb").val(id);
     $("#mdetalleTrb").val(detalle);
     $("#mfechaTrb").val(fecha);
@@ -49,6 +50,9 @@ function llenarModalEditTrabajos(id, detalle, fecha, direccion, telefono, total,
 }
 function idTrabajo(id) {
     $('#modalTrb').val(id);
+}
+function alertazzzzz (){
+    alert('hola');
 }
 function deleteTrabajo(url) {
     urlBase = url
@@ -66,3 +70,4 @@ function deleteTrabajo(url) {
     }); 
     
 }
+

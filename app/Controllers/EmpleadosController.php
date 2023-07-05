@@ -11,61 +11,21 @@ class EmpleadosController extends BaseController
         $this->request = \Config\Services::request();
         $this->session = \Config\Services::session();
     }
-    public function index()
-    {
-       
-        if ($this->session->has('usuario')) {
-            $datos = ['usuario' => $this->session->get('usuario')];
-            return view('layouts/header') . view('layouts/aside', $datos) . view('modulos/inicio', $datos) . view('layouts/footer');
-        } else {
-            $datos = array();
-            if (isset($_POST['username']) && isset($_POST['pass'])) {
-                $datos["USUARIO"] = $_POST['username'];
-                $datos["PASSWORD"] = $_POST['pass'];
-            } else
-                return $this->login();
-            $model = new \App\Models\modelEmpleados();
-            $resp = $model->login($datos);
-            if ($resp != NULL) {
-                $usuario = [
-                    $resp[0]['us_id'], $resp[0]['us_usuario']
-                ];
-                
-                $datos = ['usuario' => $usuario];
-                $this->session->set($datos);
-                return view('layouts/header') . view('layouts/aside', $datos) . view('modulos/inicio', $datos) . view('layouts/footer');
-            }
-            return view('usuarios/login', ["error" => "Usuario o contraseña incorrectos"]);
-        }
-    }
-
-    public function login()
-    {
-        if ($this->session->has('usuario'))
-            return $this->index();
-        else
-            return view('usuarios/login', ["error",]);
-    }
-
-    public function cerrarSesion()
-    {
-        $this->session->destroy();
-        return view('usuarios/login');
-    }
-    public function empleados()
+    
+    public function vistaEmpleados()
     {
         if ($this->session->has('usuario')){
             $datos = ['usuario' => $this->session->get('usuario')];
             $model = new \App\Models\modelEmpleados();
             $modelRoles = new \App\Models\modelRol();
             $roles = $modelRoles->selectRol();
-            $empleados = $model->selectEmpleados();
+            $empleados = $model->seleccionarEmpleados();
             $resp = ['empleados' => $empleados, 'roles'=>$roles];
             return view('layouts/header') . view('layouts/aside', $datos) . view('modulos/empleados', $resp) . view('layouts/footer');
         }
         return view('usuarios/login', ["error" => "Usuario o contraseña incorrectos"]);     
     }
-    public function insertE()
+    public function insertEmpleados()
     {
         if (isset($_POST['nombreEmp']) && isset($_POST['apellidoEmp'])&& isset($_POST['direccionEmp']) && isset($_POST['identificacionEmp'])&& isset($_POST['salarioEmp']) && isset($_POST['rolEmp'])) {
             $nombre = $_POST['nombreEmp'];
@@ -75,23 +35,30 @@ class EmpleadosController extends BaseController
             $salario = $_POST['salarioEmp'];
             $rol = $_POST['rolEmp'];
             $model = new \App\Models\modelEmpleados();
-            $consulta = $model->insertarEmpleado($nombre, $apellido, $direccion, $identificacion, $salario, $rol);        
+            $verificar = $model->verificarEmpleado($identificacion);
+            $validar = $model->validarDatos("",$nombre, $apellido, $direccion, $identificacion, $salario, $rol);
+            if($validar == true && $verificar ==  true){
+                $consulta = $model->insertarEmpleado($nombre, $apellido, $direccion, $identificacion, $salario, $rol);
+            }else{
+                
+            }
+                  
             return redirect()->back();
         } else {
             return 'Hubo un error, vuelva a intentar';
         }     
     }
-    public function deleteE()
+    public function deleteEmpleados()
     {
         if (isset($_POST['id'])) {
             $id = $_POST['id'];
             $model = new \App\Models\modelEmpleados();
-            $consulta = $model->deleteEmpleados($id);
+            $consulta = $model->eliminarEmpleados($id);
         } else {
             return 'Hubo un error, vuelva a intentar';
         }     
     }
-    public function editE()
+    public function editEmpleados()
     {
         if (isset($_POST['midEmp']) && isset($_POST['mnombreEmp']) && isset($_POST['mapellidoEmp'])&& isset($_POST['mdireccionEmp']) && isset($_POST['midentificacionEmp'])&& isset($_POST['msalarioEmp']) && isset($_POST['mrolEmp'])) {
             $id = $_POST['midEmp'];
@@ -102,7 +69,12 @@ class EmpleadosController extends BaseController
             $salario = $_POST['msalarioEmp'];
             $rol = $_POST['mrolEmp'];
             $model = new \App\Models\modelEmpleados();
-            $consulta = $model->editEmpleados($id,$nombre, $apellido, $direccion, $identificacion, $salario, $rol);            
+            $verificar = $model->validarDatos($id,$nombre, $apellido, $direccion, $identificacion, $salario, $rol);
+            if($verificar == true){
+                $consulta = $model->editarEmpleados($id,$nombre, $apellido, $direccion, $identificacion, $salario, $rol);           
+            }else{
+
+            }
             return redirect()->back();
 
         } else {
