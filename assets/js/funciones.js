@@ -38,8 +38,8 @@ function llenarModalEditE(id, nombre, apellido, direccion, identificacion, salar
     $("#mrolEmp option:selected").attr("selected", false);
     $(`#mrolEmp option:contains("${rol}")`).attr("selected", true).change();
 }
-function llenarModalEditTrabajos(id, detalle, fecha, direccion, telefono, total,propietario){
-    alert(id, detalle, fecha, direccion, telefono, total,propietario);
+function llenarModalEditTrabajos(id, detalle, fecha, direccion, telefono, total,propietario, responsables){    
+    console.log(id);
     $("#midTrb").val(id);
     $("#mdetalleTrb").val(detalle);
     $("#mfechaTrb").val(fecha);
@@ -50,9 +50,6 @@ function llenarModalEditTrabajos(id, detalle, fecha, direccion, telefono, total,
 }
 function idTrabajo(id) {
     $('#modalTrb').val(id);
-}
-function alertazzzzz (){
-    alert('hola');
 }
 function deleteTrabajo(url) {
     urlBase = url

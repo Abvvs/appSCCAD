@@ -13,7 +13,7 @@ class modelTrabajos extends Model
         $this->db = \Config\Database::connect();
     }
 
-    public function selectTrabajos()
+    public function seleccionarTrabajos()
     {
         $consulta = $this->db->table('tbl_trabajos t');
         $consulta->select('t.trb_id,t.trb_detalle,t.trb_fecha, t.trb_direccion, t.trb_telefono,t.trb_total, t.trb_propietario');
@@ -38,7 +38,7 @@ class modelTrabajos extends Model
         $consulta -> insert($resp);
         return 'Registro exitoso';
     }
-    public function deleteTrabajos($id)
+    public function eliminarTrabajos($id)
     {
         $consulta = $this->db->table('tbl_trabajos t');
         $consulta->where('t.trb_id', $id);
@@ -48,7 +48,7 @@ class modelTrabajos extends Model
         $consulta->update($resp);
         return  'Eliminado correctamente';
     }
-    public function editTrabajos($id,$detalle, $fecha, $direccion, $telefono, $total, $propietario)
+    public function editarTrabajos($id,$detalle, $fecha, $direccion, $telefono, $total, $propietario)
     {
         $consulta = $this->db->table('tbl_trabajos t');
         $consulta->where('t.trb_id', $id);
@@ -82,7 +82,6 @@ class modelTrabajos extends Model
         }
     }
 
-    //validar datos
-    //
+    
     
 }

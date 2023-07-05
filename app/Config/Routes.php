@@ -43,10 +43,10 @@ $routes->post('/eliminarEmpleado', 'EmpleadosController::deleteEmpleados');
 $routes->post('/editarEmpleado', 'EmpleadosController::editEmpleados');
 
 /* Rutas para la gestión de trabajos */
-$routes->get('/trabajos', 'TrabajosController::trabajos');
-$routes->post('/nuevoTrabajo', 'TrabajosController::agregarTrabajos');
-$routes->post('/editarTrabajo', 'TrabajosController::editarTrabajos');
-$routes->post('/eliminarTrabajo', 'TrabajosController::eliminarTrabajos');
+$routes->get('/trabajos', 'TrabajosController::vistaTrabajos');
+$routes->post('/nuevoTrabajo', 'TrabajosController::insertTrabajos');
+$routes->post('/editarTrabajo', 'TrabajosController::editTrabajos');
+$routes->post('/eliminarTrabajo', 'TrabajosController::deleteTrabajos');
 //$routes->get('/eliminarEmpleado/(:num)', 'Home::deleteE/$1');
 
 

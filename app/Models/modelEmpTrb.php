@@ -13,7 +13,7 @@ class modelEmpTrb extends Model
         $this->db = \Config\Database::connect();
     }
 
-    public function insertEmpTrb($trabajo, $empleados)
+    public function insertarEmpTrb($trabajo, $empleados)
     {
         if(count($empleados)>0){
             $consulta = $this->db->table('tbl_emp_trb et');
@@ -31,7 +31,7 @@ class modelEmpTrb extends Model
         }   
     }
 
-    public function selectEmpTrb()
+    public function seleccionarEmpTrb()
     {
         $consulta = $this->db->table('tbl_emp_trb et');
         $consulta->select('et.etr_id ,et.tbl_empleados_emp_id,et.tbl_trabajos_trb_id, e.emp_id, e.emp_nombre, e.emp_apellido,  ');
@@ -41,5 +41,29 @@ class modelEmpTrb extends Model
         $query = $consulta->get();
         $respuesta = $query->getResultArray();
         return $respuesta;
+    }
+    public function listaResponsables($idTrabajo)
+    {
+        $consulta = $this->db->table('tbl_emp_trb et');
+        $consulta->select('et.etr_id ,et.tbl_empleados_emp_id,et.tbl_trabajos_trb_id');
+        $consulta->where('et.tbl_trabajos_trb_id', $idTrabajo);
+        $consulta->where('et.etr_estado', 1);
+        $query = $consulta->get();
+        $respuesta = $query->getResultArray();
+        return $respuesta;
+    }
+    public function eliminarResponsables($trabajo, $empleados)
+    {
+        if(count($empleados)>0){
+            $consulta = $this->db->table('tbl_emp_trb et');
+            $consulta->where('et.tbl_trabajos_trb_id', $trabajo);
+            $resp = [
+                'etr_estado' => 0,
+            ];
+            $consulta -> update($resp);
+            return 'Se ha eliminado exitosamente';
+        }else{
+            return 'Hubo un error, bueno, quiza varios pero eso usted no sabe gg';
+        } 
     }
 }

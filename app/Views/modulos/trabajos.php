@@ -51,7 +51,7 @@
                                 name="propietarioTrb"
                                 placeholder="Jose Enriquez"
                                 aria-label="Jose Enriquez"
-                                aria-describedby="basic-icon-default-fullname2"
+                                aria-describedby="basic-icon-default-fullname2" required
                               />
                             </div>
                           </div>
@@ -68,7 +68,7 @@
                                 name="detalleTrb"
                                 placeholder="Levantamiento"
                                 aria-label="Levantamiento"
-                                aria-describedby="basic-icon-default-fullname2"
+                                aria-describedby="basic-icon-default-fullname2" required
                                 />
                               </div>
                             </div>
@@ -87,7 +87,7 @@
                                 class="form-control"
                                 placeholder="Av. Quito y 12 de Febrero"
                                 aria-label="Av. Quito y 12 de Febrero"
-                                aria-describedby="basic-icon-default-company2"
+                                aria-describedby="basic-icon-default-company2" required
                               />
                             </div>
                           </div>
@@ -106,7 +106,7 @@
                                 class="form-control phone-mask"
                                 placeholder="19/06/2023"
                                 aria-label="658 799 8941"
-                                aria-describedby="basic-icon-default-phone2"
+                                aria-describedby="basic-icon-default-phone2" required
                               />
                             </div>
                           </div>
@@ -125,7 +125,7 @@
                                 class="form-control phone-mask"
                                 placeholder="0991234567"
                                 aria-label="0991234567"
-                                aria-describedby="basic-icon-default-phone2"
+                                aria-describedby="basic-icon-default-phone2" required
                               />
                             </div>
                           </div>
@@ -144,13 +144,13 @@
                                 class="form-control phone-mask"
                                 placeholder="150"
                                 aria-label="150"
-                                aria-describedby="basic-icon-default-phone2"
+                                aria-describedby="basic-icon-default-phone2" required
                               />
                             </div>
                           </div>
                         </div>
                         <div class="row mb-3">
-                          <label class="col-sm-2 form-label" for="totalTrb">Empleados</label>
+                          <label class="col-sm-2 form-label" for="totalTrb">Responsables</label>
                             <div class="col-sm-10">
                               <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-phone2" class="input-group-text"
@@ -221,14 +221,20 @@
                                         <td><?= $t['trb_total'] ?></td>
                                         <td><?php 
                                         //var_dump(count($responsables))
+                                        $value="";
+                                        $listaResp = array();
                                         for ($j=0; $j < count($responsables); $j++) { 
                                           $r = $responsables[$j];
                                           if($r['tbl_trabajos_trb_id']==$t['trb_id']){
+                                            $value = array($r["tbl_empleados_emp_id"]=>$r["emp_nombre"]);
+                                            array_push($listaResp,$value);
                                             echo'
                                             '.$r['emp_nombre'].' '.$r['emp_apellido'].',
                                             ';
                                           }
                                         }
+                                        $respo = json_encode($listaResp);
+                                        var_dump($respo);
                                         ?>
                                         </td>
                                         <td> 
@@ -237,10 +243,13 @@
                                               <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                              <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" onclick="llenarModalEditTrabajos(<?=$t['trb_id']?>, <?=$t['trb_detalle']?>, <?=$t['trb_fecha']?>, <?=$t['trb_direccion']?>, <?=$t['trb_telefono']?>, <?=$t['trb_total']?>, <?=$t['trb_propietario']?>)" id="botonEditarTrb">
+                                              <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" onclick="llenarModalEditTrabajos('<?=$t['trb_id']?>', '<?=$t['trb_detalle']?>', '<?=$t['trb_fecha']?>', '<?=$t['trb_direccion']?>', '<?=$t['trb_telefono']?>', '<?=$t['trb_total']?>', '<?=$t['trb_propietario']?>',)" id="botonEditarTrb">
+                                              <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" onclick='llenarModalEditTrabajos(<?php echo json_encode($listaResp); ?>)' id="botonEditarTrb">
+
+
                                                 <i class="bx bx-edit-alt me-1"></i> Editar</a>
                                               
-                                              <a class="dropdown-item" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTop" onclick="idTrabajo(<?=$t['trb_id']?>)">
+                                              <a class="dropdown-item" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTop" onclick="idTrabajo('<?=$t['trb_id']?>')">
                                                 <i class="bx bx-trash me-1"></i> Eliminar</a>
                                               
                                             </div>
@@ -293,7 +302,7 @@
                                 name="mpropietarioTrb"
                                 placeholder="Jose Enriquez"
                                 aria-label="Jose Enriquez"
-                                aria-describedby="basic-icon-default-fullname2"
+                                aria-describedby="basic-icon-default-fullname2" required
                               />
                             </div>
                           </div>
@@ -310,7 +319,7 @@
                                 name="mdetalleTrb"
                                 placeholder="Levantamiento"
                                 aria-label="Levantamiento"
-                                aria-describedby="basic-icon-default-fullname2"
+                                aria-describedby="basic-icon-default-fullname2" required
                                 />
                               </div>
                             </div>
@@ -327,7 +336,7 @@
                                 class="form-control"
                                 placeholder="Av. Quito y 12 de Febrero"
                                 aria-label="Av. Quito y 12 de Febrero"
-                                aria-describedby="basic-icon-default-company2"
+                                aria-describedby="basic-icon-default-company2" required
                               />
                             </div>
                           </div>
@@ -344,7 +353,7 @@
                                 class="form-control phone-mask"
                                 placeholder="19/06/2023"
                                 aria-label="658 799 8941"
-                                aria-describedby="basic-icon-default-phone2"
+                                aria-describedby="basic-icon-default-phone2" required
                               />
                             </div>
                           </div>
@@ -361,7 +370,7 @@
                                 class="form-control phone-mask"
                                 placeholder="0991234567"
                                 aria-label="0991234567"
-                                aria-describedby="basic-icon-default-phone2"
+                                aria-describedby="basic-icon-default-phone2" required
                               />
                             </div>
                           </div>
@@ -378,7 +387,7 @@
                                 class="form-control phone-mask"
                                 placeholder="150"
                                 aria-label="150"
-                                aria-describedby="basic-icon-default-phone2"
+                                aria-describedby="basic-icon-default-phone2" required
                               />
                             </div>
                           </div>
