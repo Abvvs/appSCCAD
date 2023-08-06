@@ -42,7 +42,6 @@ class EmpleadosController extends BaseController
             }else{
                 
             }
-                  
             return redirect()->back();
         } else {
             return 'Hubo un error, vuelva a intentar';

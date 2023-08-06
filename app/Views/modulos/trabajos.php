@@ -234,7 +234,6 @@
                                           }
                                         }
                                         $respo = json_encode($listaResp);
-                                        var_dump($respo);
                                         ?>
                                         </td>
                                         <td> 

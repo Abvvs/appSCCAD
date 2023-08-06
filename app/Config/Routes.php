@@ -49,7 +49,9 @@ $routes->post('/editarTrabajo', 'TrabajosController::editTrabajos');
 $routes->post('/eliminarTrabajo', 'TrabajosController::deleteTrabajos');
 //$routes->get('/eliminarEmpleado/(:num)', 'Home::deleteE/$1');
 
-
+/* Rutas calendario */
+$routes->get('/calendario', 'CalendarController::vistaCalendario2');
+$routes->post('/calendario', 'CalendarController::vistaCalendario2');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
