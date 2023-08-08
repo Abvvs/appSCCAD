@@ -39,7 +39,7 @@
           </a>
         </li> 
         <li class="menu-item">
-          <a href="<?php echo base_url('cerrar')?>" class="menu-link">
+          <a href="<?php echo base_url('cerrar')?>" class="menu-link" name="btnCerrar">
             <i class="bx bx-power-off me-2"></i>
               <div data-i18n="Analytics">CERRAR SESIÓN</div>
           </a>

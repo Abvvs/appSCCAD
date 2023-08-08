@@ -72,18 +72,33 @@ class modelEmpleados extends Model
         $consulta->where('e.emp_estado', 1);
         $query = $consulta->get();
         $respuesta = $query->getResultArray();
-        if($respuesta != null){
-            return false;
+        if(empty($respuesta)){
+            return 0; //false -> no se encontro nada
         }else{
-            return true;
+            return 1; //true -> se encontro empleado
         }
     }
 
     public function validarDatos($id,$nombre, $apellido, $direccion, $identificacion, $salario, $rol){
-        if($nombre != "" && $apellido != "" && $direccion != "" && $identificacion != "" && $salario != "" && $rol!= "Seleccione un Rol"){
-            return true;
+        if($nombre != "" && $apellido != "" && $direccion != "" && $identificacion != "" && $salario != "" && $rol!= "0"){
+            if(is_numeric($identificacion)){
+                if(strlen($identificacion)<10){
+                    return 0; // false -> no se puede
+                }else{
+                    if($this->verificarEmpleado($identificacion)==1){
+                        return 2;  //false -> no se puede ingresar, ya existe
+
+                    }else{
+
+                        return 1;  //true -> se puede ingresar
+                    }
+                }
+            }else {
+                return 0;   //false -> no se puede
+            }
+            
         }else{
-            return false;
+            return 0;   //false
         }
     }
     

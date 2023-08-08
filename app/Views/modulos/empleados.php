@@ -101,12 +101,15 @@
                               </span>
                               <input
                                 type="text"
+                                maxlength="10"
+                                size="10"
                                 id="identificacionEmp"
                                 name="identificacionEmp"
                                 class="form-control phone-mask"
                                 placeholder="1002003001"
                                 aria-label="658 799 8941"
-                                aria-describedby="basic-icon-default-phone2" required
+                                aria-describedby="basic-icon-default-phone2"
+                                required
                               />
                             </div>
                           </div>
@@ -138,7 +141,7 @@
                                 ><i class="bx bx-briefcase"></i>
                               </span>
                               <select class="form-select" id="rolEmp" aria-label="Default select example" name="rolEmp">
-                                <option selected>Seleccione un Rol</option>
+                                <option selected value="0">Seleccione un Rol</option>
                                 <?php
                                   for($i = 0; $i < count($roles); $i++){
                                     $r = $roles[$i];
@@ -200,11 +203,11 @@
                                         <td>' . $e['rol_nombre'] . '</td>
                                         <td> 
                                           <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                            <button type="button" name="btnAccion" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                               <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                              <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#modalCenter" onclick= "llenarModalEditE('.$e['emp_id'].',\''.$e['emp_nombre'].'\',\''.$e['emp_apellido'].'\',\''.$e['emp_direccion'].'\',\''.$e['emp_identificacion'].'\',\''.$e['emp_salario'].'\',\''.$e['rol_nombre'].'\')">
+                                              <a class="dropdown-item" name="mEditar" href="" data-bs-toggle="modal" data-bs-target="#modalCenter" onclick= "llenarModalEditE('.$e['emp_id'].',\''.$e['emp_nombre'].'\',\''.$e['emp_apellido'].'\',\''.$e['emp_direccion'].'\',\''.$e['emp_identificacion'].'\',\''.$e['emp_salario'].'\',\''.$e['rol_nombre'].'\')">
                                                 <i class="bx bx-edit-alt me-1"></i> Editar</a>
                                               
                                               <a class="dropdown-item" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTop" onclick="idEmpleado('.$e['emp_id'].')">
