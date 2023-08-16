@@ -74,12 +74,31 @@ class modelTrabajos extends Model
         $respuesta = $query->getResultArray();
         return $respuesta;
     }
-    public function validarDatos($detalle, $fecha, $direccion, $telefono, $total, $propietario){
-        if($detalle != "" && $fecha!= "" && $direccion!= "" && $telefono!= "" && $total!= "" && $propietario!= ""){
-            return true;
-        }else{
-            return false;
+    public function validarDatos($detalle, $fecha, $direccion, $telefono, $total, $propietario, $empleados){
+
+        $regex = '/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]{3,45}$/u';
+        $regexDir = '/^.{3,100}$/u';
+        //'/^[\p{L}\s]{3,100}$/u'
+        $regexTel = '/^[0-9]{10}$/';
+        $regexSalario = '/^[0-9.]{1,6}$/';
+        $estado = 0;
+        //var_dump($empleados[0]);
+        if ($detalle != "" && $fecha != "" && $direccion != "" && $telefono != "" && $total != "" && $propietario != "" && $empleados[0] !="0") {
+            //echo '<script>alert('.strlen($nombre).');</script>';
+            
+            // CAMBIAR SALARIO TYPE NUMBER
+            //CAMBIAR IDENTIFICACION SOLO 10 NUMEROS
+            //echo '<script>alert('.strlen($identificacion).' '.$identificacion.');</script>';
+            if (preg_match($regex, $propietario) && preg_match($regexDir, $detalle) && preg_match($regexDir, $direccion) && preg_match($regexTel, $telefono) && preg_match($regexSalario, $total)) {
+                $estado = 1; //true -> se puede ingresar
+            } else {
+                $estado = 0;
+            }
+
+        } else {
+            $estado = 0; //false
         }
+        return $estado;
     }
 
     

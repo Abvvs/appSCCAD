@@ -40,15 +40,24 @@ class TrabajosController extends BaseController
             $empleados =  $_POST['empleados'];
             $model = new \App\Models\modelTrabajos();
             $modelEmpTrb = new \App\Models\modelEmpTrb();
-            $validar = $model->validarDatos($detalle, $fecha, $direccion, $telefono, $total, $propietario);
-            if($validar == true){
+            $validar = $model->validarDatos($detalle, $fecha, $direccion, $telefono, $total, $propietario, $empleados);
+            
+            if($validar == 1){
                 $consulta = $model->insertarTrabajo($detalle, $fecha, $direccion, $telefono, $total, $propietario);   
                 $ultimo = $model ->ultimoTrabajo();
                 $consulta2 = $modelEmpTrb->insertarEmpTrb($ultimo[0]['trb_id'], $empleados);
+                echo "<script>alert('Registro de trabajo existoso');
+                window.location='trabajos';
+                </script>";
+            }else{
+                echo "<script>alert('Ingrese datos válidos');
+                window.location='trabajos';
+                </script>";
             }
-            return redirect()->back(); 
         } else {
-            return 'Hubo un error, vuelva a intentar';
+            echo "<script>alert('Ingrese datos válidos');
+                window.location='trabajos';
+                </script>";
         }
     }
     public function editTrabajos()
@@ -64,7 +73,7 @@ class TrabajosController extends BaseController
             $empleados = $_POST['mempleados'];
             $model = new \App\Models\modelTrabajos();
             $modelEmpTrb = new \App\Models\modelEmpTrb();
-            $validar = $model->validarDatos($detalle, $fecha, $direccion, $telefono, $total, $propietario);
+            $validar = $model->validarDatos($detalle, $fecha, $direccion, $telefono, $total, $propietario,$empleados);
             if($validar == true){
                 $consulta = $model->editarTrabajos($id,$detalle, $fecha, $direccion, $telefono, $total, $propietario);  
                 $listaEmpleados = $modelEmpTrb ->listaResponsables($id);

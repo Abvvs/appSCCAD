@@ -157,7 +157,9 @@
                                 ><i class="bx bx-user-plus"></i>
                               </span>
                               <select class="js-example-basic-multiple" name="empleados[]" multiple="multiple" style="width:93.9%">
+                              <option value="0"></option>
                               <?php
+                              
                                   for($i = 0; $i < count($empleados); $i++){
                                     $e = $empleados[$i];
                                     echo'

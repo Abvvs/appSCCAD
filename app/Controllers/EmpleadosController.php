@@ -51,6 +51,10 @@ class EmpleadosController extends BaseController
                 echo "<script>alert('Empleado registrado exitosamente');
                 window.location='empleados'
                 </script>";
+            }else{
+                echo "<script>alert('Hubo un error, vuelva a intentar');
+                window.location='empleados';
+                </script>";
             }        
         } else {
             return 'Hubo un error, vuelva a intentar';
@@ -78,13 +82,22 @@ class EmpleadosController extends BaseController
             $rol = $_POST['mrolEmp'];
             $model = new \App\Models\modelEmpleados();
             $verificar = $model->validarDatos($id, $nombre, $apellido, $direccion, $identificacion, $salario, $rol);
-            if ($verificar == true) {
-                $consulta = $model->editarEmpleados($id, $nombre, $apellido, $direccion, $identificacion, $salario, $rol);
-            } else {
-
+            $validar = $model->validarDatos("", $nombre, $apellido, $direccion, $identificacion, $salario, $rol);
+            $cambios = $model->verificarCambios($id,$identificacion);                  
+            if ($validar == 0) {
+                echo "<script>alert('Ingrese datos válidos');
+                window.location='empleados';
+                </script>";
+            } else if( $cambios == 1){
+                echo "<script>alert('Empleado ya se encuentra registrado');
+                window.location='empleados';
+                </script>";
+            }else if($cambios == 0 || $cambios == 2){
+                $consulta = $model->editarEmpleados($id,$nombre, $apellido, $direccion, $identificacion, $salario, $rol);
+                echo "<script>alert('Empleado editado exitosamente');
+                window.location='empleados'
+                </script>";
             }
-            return redirect()->back();
-
         } else {
             return 'Hubo un error, vuelva a intentar';
         }

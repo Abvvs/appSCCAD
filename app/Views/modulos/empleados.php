@@ -51,7 +51,8 @@
                                 name="nombreEmp"
                                 placeholder="John"
                                 aria-label="John"
-                                aria-describedby="basic-icon-default-fullname2" required
+                                aria-describedby="basic-icon-default-fullname2" 
+                                required
                               />
                             </div>
                           </div>
@@ -101,8 +102,7 @@
                               </span>
                               <input
                                 type="text"
-                                maxlength="10"
-                                size="10"
+                               
                                 id="identificacionEmp"
                                 name="identificacionEmp"
                                 class="form-control phone-mask"
@@ -122,7 +122,8 @@
                                 ><i class="bx bx-money"></i>
                               </span>
                               <input
-                                type="number"
+                                type="text"
+                                step="0.01"
                                 id="salarioEmp"
                                 name="salarioEmp"
                                 class="form-control phone-mask"
@@ -350,7 +351,7 @@
                                 ><i class="bx bx-briefcase"></i>
                               </span>
                               <select class="form-select" id="mrolEmp" aria-label="Default select example" name="mrolEmp">
-                                <option selected>Seleccione un Rol</option>
+                                <option selected value="0">Seleccione un Rol</option>
                                 <?php
                                   for($i = 0; $i < count($roles); $i++){
                                     $r = $roles[$i];

@@ -80,7 +80,9 @@ function deleteTrabajo(url) {
   });
 }
 
-function validarSiNumero(numero){
-  if(!/^([0-9])*$/.test(numero))
-    alert("El valor "+numero+" no es un número");
+function validarNombre(nombre){
+  //var nombre = $("#nombreEmp").val();
+  const regex = /^[a-zA-Z\s]{3,45}$/;
+  if(!regex.test(nombre))
+    alert("Ingrese datos válidos "+ nombre);
 }
